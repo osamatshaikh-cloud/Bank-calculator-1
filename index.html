@@ -1,793 +1,189 @@
-<!DOCTYPE html>
+Chatgpt 
+الاله 
 
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>حاسبة التمويل البنكي - أسامة شيخ</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-    --green:       #00754A;
-    --green-dark:  #005C3A;
-    --green-light: #00A36C;
-    --green-pale:  #E8F5F0;
-    --offwhite:    #F5F8F6;
-    --card:        #FFFFFF;
-    --border:      #D0E8DE;
-    --text:        #1A2E24;
-    --muted:       #6B8C7A;
-    --red:         #D32F2F;
-    --orange:      #E65100;
-    --shadow:      rgba(0,117,74,0.10);
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Tajawal',sans-serif; background:var(--offwhite); color:var(--text); min-height:100vh; }
+:root {
+  --green:#006C35;
+  --green-dark:#004B28;
+  --green-light:#00A859;
+  --green-pale:#E8F5F0;
+  --offwhite:#F5F8F6;
+  --card:#FFFFFF;
+  --border:#D0E8DE;
+  --text:#1A2E24;
+  --muted:#6B8C7A;
+  --red:#D32F2F;
+  --orange:#E65100;
+  --shadow:rgba(0,117,74,0.10);
+}
 
-.header { background:linear-gradient(135deg,var(–green-dark) 0%,var(–green) 60%,var(–green-light) 100%); box-shadow:0 3px 16px var(–shadow); }
-.header-inner { max-width:1180px; margin:0 auto; padding:18px 28px; display:flex; align-items:center; justify-content:space-between; }
-.header-left { display:flex; align-items:center; gap:14px; }
-.hicon { width:48px; height:48px; background:rgba(255,255,255,0.18); border:2px solid rgba(255,255,255,0.4); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; }
-.header h1 { font-size:20px; font-weight:800; color:#fff; }
-.header p  { font-size:12px; color:rgba(255,255,255,0.75); margin-top:2px; }
-.header-badge { background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); border-radius:20px; padding:5px 14px; font-size:11px; color:rgba(255,255,255,0.9); font-weight:600; }
+*{margin:0;padding:0;box-sizing:border-box;}
 
-.main { display:grid; grid-template-columns:1fr 300px; gap:18px; padding:20px 22px; max-width:1180px; margin:0 auto; }
+body{
+  font-family:'Tajawal',sans-serif;
+  background:var(--offwhite);
+  color:var(--text);
+}
 
-.card { background:var(–card); border:1px solid var(–border); border-radius:14px; padding:20px; margin-bottom:14px; box-shadow:0 2px 12px var(–shadow); }
-.card-title { font-size:14px; font-weight:700; color:var(–green-dark); margin-bottom:16px; padding-bottom:10px; border-bottom:2px solid var(–green-pale); display:flex; align-items:center; gap:7px; }
+/* HEADER */
+.header{
+  background:linear-gradient(135deg,var(--green-dark),var(--green),var(--green-light));
+  box-shadow:0 4px 20px var(--shadow);
+}
+.header-inner{
+  max-width:1180px;
+  margin:auto;
+  padding:18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.hicon{
+  background:rgba(255,255,255,0.2);
+  border-radius:12px;
+  padding:10px;
+  font-size:22px;
+}
+.header h1{color:#fff;font-size:20px;font-weight:800;}
+.header p{color:#d9f2e7;font-size:12px;}
 
-.field { margin-bottom:13px; }
-label { display:block; font-size:12px; color:var(–muted); margin-bottom:5px; font-weight:600; }
-input[type=“number”] { width:100%; background:var(–offwhite); border:1.5px solid var(–border); border-radius:9px; padding:10px 13px; color:var(–text); font-family:‘Tajawal’,sans-serif; font-size:15px; font-weight:600; direction:ltr; text-align:right; transition:border-color .2s, box-shadow .2s; }
-input[type=“number”]:focus { outline:none; border-color:var(–green); box-shadow:0 0 0 3px rgba(0,117,74,0.12); background:#fff; }
-input::placeholder { color:#B0C4BB; font-size:13px; font-weight:400; }
+/* CARDS */
+.card{
+  background:var(--card);
+  border-radius:14px;
+  padding:18px;
+  margin-bottom:14px;
+  border:1px solid var(--border);
+  box-shadow:0 3px 14px var(--shadow);
+}
+.card-title{
+  color:var(--green-dark);
+  font-weight:700;
+  margin-bottom:10px;
+}
 
-.toggle-group { display:flex; gap:3px; background:var(–offwhite); border:1.5px solid var(–border); border-radius:10px; padding:3px; }
-.toggle-btn { flex:1; padding:9px 6px; border:none; border-radius:8px; cursor:pointer; font-family:‘Tajawal’,sans-serif; font-size:13px; font-weight:700; background:transparent; color:var(–muted); transition:all .2s; }
-.toggle-btn.active { background:var(–green); color:#fff; box-shadow:0 2px 8px rgba(0,117,74,0.3); }
+/* INPUT */
+input{
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:1.5px solid var(--border);
+  background:#fff;
+}
+input:focus{
+  border-color:var(--green);
+  outline:none;
+}
 
-.loan-type-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px; }
-.ltype-btn { padding:10px 8px; text-align:center; background:var(–offwhite); border:1.5px solid var(–border); border-radius:10px; cursor:pointer; font-family:‘Tajawal’,sans-serif; font-size:12px; font-weight:700; color:var(–muted); transition:all .2s; line-height:1.4; }
-.ltype-btn.active { background:var(–green-pale); border-color:var(–green); color:var(–green-dark); }
-.ltype-btn .ltype-icon { font-size:16px; display:block; margin-bottom:3px; }
+/* BUTTONS */
+button{
+  padding:10px;
+  border-radius:10px;
+  border:1px solid var(--green);
+  background:#fff;
+  color:var(--green-dark);
+  cursor:pointer;
+  font-weight:700;
+}
 
-.g2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+button:hover{
+  background:var(--green);
+  color:#fff;
+}
 
-.tabs { display:flex; gap:8px; margin-bottom:16px; }
-.tab { flex:1; padding:11px 8px; text-align:center; background:var(–card); border:1.5px solid var(–border); border-radius:11px; cursor:pointer; font-family:‘Tajawal’,sans-serif; font-size:13px; font-weight:700; color:var(–muted); transition:all .2s; }
-.tab.active { background:var(–green); border-color:var(–green); color:#fff; box-shadow:0 2px 8px rgba(0,117,74,0.3); }
-.tab-content { display:none; }
-.tab-content.active { display:block; }
+/* ACTIVE */
+.active{
+  background:var(--green)!important;
+  color:#fff!important;
+}
 
-.result-main { background:linear-gradient(135deg,var(–green-dark),var(–green)); border-radius:14px; padding:22px; margin-top:14px; }
-.result-label { font-size:12px; color:rgba(255,255,255,0.7); margin-bottom:4px; }
-.result-big { font-size:30px; font-weight:800; color:#fff; direction:ltr; text-align:right; line-height:1.1; }
-.result-unit { font-size:12px; color:rgba(255,255,255,0.6); margin-top:2px; margin-bottom:14px; }
+/* RESULT BOX */
+.result-main{
+  background:linear-gradient(135deg,var(--green-dark),var(--green));
+  color:#fff;
+  border-radius:14px;
+  padding:20px;
+  margin-top:10px;
+}
 
-.stat-row { display:grid; gap:7px; }
-.stat-row.cols3 { grid-template-columns:repeat(3,1fr); }
-.stat-row.cols4 { grid-template-columns:repeat(4,1fr); }
-.stat-box { background:rgba(255,255,255,0.15); border-radius:10px; padding:10px 8px; text-align:center; }
-.stat-val { font-size:13px; font-weight:700; color:#fff; direction:ltr; }
-.stat-lbl { font-size:10px; color:rgba(255,255,255,0.65); margin-top:3px; }
+.result-big{
+  font-size:28px;
+  font-weight:800;
+}
 
-.result-split { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; }
-.split-box { background:rgba(255,255,255,0.15); border-radius:10px; padding:13px; }
-.split-box .lbl { font-size:11px; color:rgba(255,255,255,0.65); margin-bottom:4px; }
-.split-box .val { font-size:17px; font-weight:800; color:#fff; }
+/* SMALL FIXES */
+.note{
+  background:var(--green-pale);
+  padding:10px;
+  border-radius:8px;
+  font-size:12px;
+}
 
-.badge { display:inline-flex; align-items:center; gap:5px; padding:4px 11px; border-radius:20px; font-size:11px; font-weight:700; margin-top:10px; }
-.ok   { background:rgba(0,117,74,0.1); color:var(–green-dark); border:1px solid rgba(0,117,74,0.2); }
-.over { background:rgba(211,47,47,0.1); color:var(–red); border:1px solid rgba(211,47,47,0.2); }
+.footer{
+  text-align:center;
+  padding:20px;
+  color:var(--muted);
+}
 
-.note { background:var(–green-pale); border-radius:9px; padding:9px 12px; font-size:12px; color:var(–muted); margin-bottom:10px; border:1px solid var(–border); }
-.note strong { color:var(–green-dark); }
-
-.inner-box { background:var(–offwhite); border:1.5px solid var(–border); border-radius:11px; padding:14px; margin-top:8px; }
-.inner-title { font-size:13px; font-weight:700; color:var(–green-dark); margin-bottom:12px; }
-
-.div { height:1px; background:var(–border); margin:14px 0; }
-
-/* fee highlight box */
-.fee-box { background:#FFF8E1; border:1.5px solid #FFD54F; border-radius:10px; padding:13px; margin-top:10px; }
-.fee-box-title { font-size:12px; font-weight:700; color:#6D4C00; margin-bottom:8px; }
-.fee-row { display:flex; justify-content:space-between; font-size:12px; padding:4px 0; border-bottom:1px solid rgba(255,213,79,0.3); }
-.fee-row:last-child { border-bottom:none; font-weight:700; color:#3E2800; }
-.fee-lbl { color:#8D6E00; }
-.fee-val { font-weight:700; color:#5D4000; direction:ltr; }
-
-.arow { display:flex; justify-content:space-between; align-items:flex-start; padding:8px 0; border-bottom:1px solid var(–border); font-size:13px; gap:8px; }
-.arow:last-child { border-bottom:none; }
-.albl { color:var(–muted); }
-.aval { font-weight:700; direction:ltr; text-align:left; }
-.aval.g { color:var(–green-dark); }
-.aval.r { color:var(–red); }
-.aval.b { color:var(–text); }
-
-.sidebar { position:sticky; top:20px; height:fit-content; }
-.ratio-sec { margin-bottom:14px; }
-.ratio-head { display:flex; justify-content:space-between; font-size:12px; margin-bottom:5px; }
-.rlabel { color:var(–muted); font-weight:600; }
-.rval   { font-weight:800; }
-.bar-wrap { background:var(–offwhite); border-radius:6px; height:10px; overflow:hidden; margin-bottom:3px; border:1px solid var(–border); }
-.bar-fill { height:100%; border-radius:6px; transition:width .5s cubic-bezier(.34,1.56,.64,1), background .3s; }
-.bar-limit { font-size:11px; color:var(–muted); }
-
-.footer { text-align:center; padding:18px; font-size:12px; color:var(–muted); border-top:1px solid var(–border); margin-top:4px; }
-.footer strong { color:var(–green-dark); font-size:13px; }
-
-.cond-field { display:none; }
-.cond-field.show { display:block; }
-
-@media(max-width:768px){ .main { grid-template-columns:1fr; } .sidebar { position:static; } }
 </style>
-
 </head>
+
 <body>
 
 <div class="header">
   <div class="header-inner">
-    <div class="header-left">
-      <div class="hicon">🏦</div>
-      <div>
-        <h1>حاسبة التمويل البنكي</h1>
-        <p>احتساب أقصى مبلغ تمويل شخصي وعقاري وفق نسب الاستقطاع المعتمدة</p>
-      </div>
+    <div>
+      <h1>حاسبة التمويل البنكي</h1>
+      <p>تصميم احترافي بأسلوب البنوك 💰</p>
     </div>
-    <div class="header-badge">الإصدار 3.0</div>
+    <div class="hicon">🏦</div>
   </div>
 </div>
 
-<div class="main">
-<div>
+<div style="max-width:900px;margin:auto;padding:20px;">
 
-  <!-- CLIENT INFO -->
+<div class="card">
+<div class="card-title">👤 بيانات العميل</div>
 
-  <div class="card">
-    <div class="card-title">👤 بيانات العميل</div>
-    <div class="g2">
-      <div class="field">
-        <label>الراتب الشهري (ريال)</label>
-        <input type="number" id="salary" placeholder="مثال: 15000" oninput="calc()">
-      </div>
-      <div class="field">
-        <label>نسبة الأرباح (هامش %) سنوياً</label>
-        <input type="number" id="profitRate" placeholder="مثال: 4.5" step="0.1" oninput="calc()">
-      </div>
-    </div>
-    <div class="field">
-      <label>حالة العميل الوظيفية</label>
-      <div class="toggle-group">
-        <button class="toggle-btn active" onclick="setType('employed',this)">🏢 موظف على رأس العمل</button>
-        <button class="toggle-btn" onclick="setType('retired',this)">🎖️ متقاعد</button>
-      </div>
-    </div>
-  </div>
+<input id="salary" placeholder="الراتب">
+<br><br>
+<input id="profitRate" placeholder="نسبة الأرباح">
 
-  <!-- DEDUCTIONS -->
+<br><br>
+<button onclick="calc()">احسب</button>
 
-  <div class="card">
-    <div class="card-title">💳 الالتزامات الحالية للعميل</div>
-    <div class="g2">
-      <div class="field">
-        <label>الحد الائتماني للبطاقات (ريال)</label>
-        <input type="number" id="creditLimit" placeholder="مثال: 20000" oninput="calc()">
-      </div>
-      <div class="field">
-        <label>قسط التمويل الشخصي الخارجي (ريال/شهر)</label>
-        <input type="number" id="extPersonal" placeholder="مثال: 1500" oninput="calc()">
-      </div>
-    </div>
-    <div class="note" id="cardNote" style="display:none">
-      💳 استقطاع البطاقة: <strong id="cardNoteVal"></strong> ريال/شهر (5% من الحد الائتماني)
-    </div>
-    <div class="note" id="extRuleNote" style="display:none">
-      ⚠️ الالتزام الخارجي <strong id="extRuleVal"></strong>% من الراتب — <span id="extRuleMsg"></span>
-    </div>
-  </div>
-
-  <!-- TABS -->
-
-  <div class="tabs">
-    <button class="tab active" onclick="switchTab('personal',this)">💰 التمويل الشخصي</button>
-    <button class="tab" onclick="switchTab('realestate',this)">🏠 التمويل العقاري</button>
-    <button class="tab" onclick="switchTab('settlement',this)">🧾 حاسبة سداد 20%</button>
-  </div>
-
-  <!-- ========== PERSONAL TAB ========== -->
-
-  <div id="tab-personal" class="tab-content active">
-    <div class="card">
-      <div class="card-title">💰 حاسبة التمويل الشخصي</div>
-
-```
-  <div class="field">
-    <label>نوع التمويل</label>
-    <div class="loan-type-grid">
-      <button class="ltype-btn active" onclick="setLoanType('new',this)"><span class="ltype-icon">✨</span>تمويل جديد</button>
-      <button class="ltype-btn" onclick="setLoanType('supplementary',this)"><span class="ltype-icon">➕</span>تمويل تكميلي</button>
-      <button class="ltype-btn" onclick="setLoanType('additional',this)"><span class="ltype-icon">🔄</span>تمويل إضافي</button>
-      <button class="ltype-btn" onclick="setLoanType('buyout',this)"><span class="ltype-icon">🏷️</span>شراء مديونية</button>
-    </div>
-  </div>
-
-  <!-- SUPPLEMENTARY fields -->
-  <div id="field-earlySettle" class="cond-field inner-box" style="margin-bottom:13px;">
-    <div class="inner-title">💰 بيانات التمويل الحالي (للتكميلي)</div>
-    <div class="g2">
-      <div class="field" style="margin-bottom:0">
-        <label>مبلغ السداد المبكر للتمويل الحالي (ريال)</label>
-        <input type="number" id="earlySettle" placeholder="مثال: 80000" oninput="calc()">
-      </div>
-      <div class="field" style="margin-bottom:0">
-        <label>قسط التمويل الحالي المراد تكميله (ريال/شهر)</label>
-        <input type="number" id="existPInstall" placeholder="مثال: 2500" oninput="calc()">
-      </div>
-    </div>
-  </div>
-
-  <!-- ADDITIONAL fields -->
-  <div id="field-addInstall" class="cond-field inner-box" style="margin-bottom:13px;">
-    <div class="inner-title">🔄 التمويل الأساسي القائم (للإضافي)</div>
-    <div class="field" style="margin-bottom:6px">
-      <label>قسط التمويل الشخصي الأساسي القائم (ريال/شهر)</label>
-      <input type="number" id="addExistInstall" placeholder="مثال: 3000" oninput="calc()">
-    </div>
-    <div class="note" style="margin-bottom:0">
-      📌 القسط الأساسي + قسط الإضافي الجديد يجب ألا يتجاوز <strong id="addLimitLabel">33.33%</strong> من الراتب
-    </div>
-  </div>
-
-  <!-- BUYOUT fields -->
-  <div id="field-buyout" class="cond-field inner-box" style="margin-bottom:13px;">
-    <div class="inner-title">🏷️ بيانات شراء المديونية</div>
-    <div class="field" style="margin-bottom:0">
-      <label>مبلغ السداد المبكر للبنك الآخر (ريال)</label>
-      <input type="number" id="otherBankDebt" placeholder="مثال: 115000" oninput="calc()">
-    </div>
-  </div>
-
-  <!-- TENURE -->
-  <div class="field">
-    <label>مدة التمويل الشخصي (شهر)</label>
-    <input type="number" id="pTenure" placeholder="مثال: 60" oninput="calc()">
-  </div>
-
-  <!-- RESULT -->
-  <div id="pResult" style="display:none">
-    <div class="result-main">
-      <div class="result-label" id="pResultLabel">أقصى مبلغ تمويل شخصي ممكن</div>
-      <div class="result-big" id="pMaxAmt">—</div>
-      <div class="result-unit">ريال سعودي (قبل خصم الرسوم)</div>
-
-      <div id="buyoutSplit" style="display:none">
-        <div class="result-split">
-          <div class="split-box"><div class="lbl">سداد مديونية البنك الآخر</div><div class="val" id="buyoutSettle">—</div><div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px;">ريال</div></div>
-          <div class="split-box"><div class="lbl">يودع بحساب العميل</div><div class="val" id="buyoutDeposit">—</div><div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px;">ريال</div></div>
-        </div>
-      </div>
-
-      <div class="stat-row cols4" style="margin-top:12px;">
-        <div class="stat-box"><div class="stat-val" id="pInstall">—</div><div class="stat-lbl">أقصى قسط شهري</div></div>
-        <div class="stat-box"><div class="stat-val" id="pTotal">—</div><div class="stat-lbl">إجمالي المدفوع</div></div>
-        <div class="stat-box"><div class="stat-val" id="pProfit">—</div><div class="stat-lbl">إجمالي الأرباح</div></div>
-        <div class="stat-box"><div class="stat-val" id="pNet">—</div><div class="stat-lbl">صافي المبلغ للعميل</div></div>
-      </div>
-    </div>
-
-    <!-- FEES BOX -->
-    <div class="fee-box">
-      <div class="fee-box-title">🧾 الرسوم الإدارية والضريبة</div>
-      <div class="fee-row"><span class="fee-lbl">مبلغ التمويل الإجمالي</span><span class="fee-val" id="fee_principal">—</span></div>
-      <div class="fee-row"><span class="fee-lbl">رسوم إدارية (0.5%)</span><span class="fee-val" id="fee_admin">—</span></div>
-      <div class="fee-row"><span class="fee-lbl">ضريبة على الرسوم (15%)</span><span class="fee-val" id="fee_vat">—</span></div>
-      <div class="fee-row"><span class="fee-lbl">إجمالي الرسوم والضريبة</span><span class="fee-val" id="fee_total">—</span></div>
-      <div class="fee-row"><span class="fee-lbl" style="font-weight:700;color:#3E2800">✅ صافي المبلغ المحوّل للعميل</span><span class="fee-val" style="color:#1B5E20;font-size:14px;" id="fee_net">—</span></div>
-    </div>
-
-    <div id="pBadge"></div>
-
-    <!-- BREAKDOWN -->
-    <div class="div"></div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:700;">📋 تفاصيل الاحتساب</div>
-    <div class="arow"><span class="albl">الراتب الشهري</span><span class="aval b" id="bd_salary">—</span></div>
-    <div class="arow"><span class="albl" id="bd_limitLabel">نسبة الاستقطاع الشخصي</span><span class="aval b" id="bd_limitPct">—</span></div>
-    <div class="arow"><span class="albl">سقف وفق نسبة الشخصي</span><span class="aval b" id="bd_cap1">—</span></div>
-    <div class="arow"><span class="albl">سقف وفق نسبة الشخصي+بطاقات (45%)</span><span class="aval b" id="bd_cap2">—</span></div>
-    <div class="arow"><span class="albl">استقطاع التمويل الخارجي</span><span class="aval r" id="bd_ext">—</span></div>
-    <div class="arow"><span class="albl">استقطاع البطاقات (5%)</span><span class="aval r" id="bd_cards">—</span></div>
-    <div class="arow" id="bd_addRow" style="display:none"><span class="albl">قسط التمويل الأساسي القائم</span><span class="aval r" id="bd_addInstall">—</span></div>
-    <div class="arow" id="bd_buyoutRow" style="display:none"><span class="albl">عدد الأقساط الفعلية (شراء مديونية)</span><span class="aval b" id="bd_buyoutMonths">—</span></div>
-    <div class="arow" id="bd_otherDebtRow" style="display:none"><span class="albl">مديونية البنك الآخر (مخصومة)</span><span class="aval r" id="bd_otherDebt">—</span></div>
-    <div class="arow" style="border-top:2px solid var(--green);margin-top:2px;padding-top:10px;">
-      <span style="font-weight:800;color:var(--text)">القسط الأقصى المتاح للبنك</span>
-      <span class="aval g" style="font-size:15px;" id="bd_avail">—</span>
-    </div>
-  </div>
-  <div id="pEmpty" style="font-size:13px;color:var(--muted);text-align:center;padding:22px 0;">
-    أدخل الراتب ونسبة الأرباح ومدة التمويل لعرض النتائج
-  </div>
+<div id="result" class="result-main" style="display:none;">
+<div class="result-big" id="output">—</div>
 </div>
-```
 
-  </div>
-
-  <!-- ========== REAL ESTATE TAB ========== -->
-
-  <div id="tab-realestate" class="tab-content">
-    <div class="card">
-      <div class="card-title">🏠 حاسبة التمويل العقاري</div>
-      <div class="field">
-        <label>مدة التمويل العقاري (شهر)</label>
-        <input type="number" id="reTenure" placeholder="مثال: 300" oninput="calc()">
-      </div>
-      <div class="inner-box">
-        <div class="inner-title">📋 تمويل شخصي قائم (اختياري)</div>
-        <div class="g2">
-          <div class="field" style="margin-bottom:0">
-            <label>قسط التمويل الشخصي القائم (ريال/شهر)</label>
-            <input type="number" id="existInstall" placeholder="مثال: 2000" oninput="calc()">
-          </div>
-          <div class="field" style="margin-bottom:0">
-            <label>المدة المتبقية (شهر)</label>
-            <input type="number" id="existRemain" placeholder="مثال: 36" oninput="calc()">
-          </div>
-        </div>
-      </div>
-
-```
-  <div id="reResult" style="display:none;margin-top:14px;">
-    <div class="result-main">
-      <div class="result-label">أقصى مبلغ تمويل عقاري ممكن</div>
-      <div class="result-big" id="reMaxAmt">—</div>
-      <div class="result-unit">ريال سعودي</div>
-      <div class="stat-row cols3" style="margin-top:8px;">
-        <div class="stat-box"><div class="stat-val" id="reInstall">—</div><div class="stat-lbl">قسط المرحلة الأولى</div></div>
-        <div class="stat-box"><div class="stat-val" id="reTotal">—</div><div class="stat-lbl">إجمالي المدفوع</div></div>
-        <div class="stat-box"><div class="stat-val" id="reProfit">—</div><div class="stat-lbl">إجمالي الأرباح</div></div>
-      </div>
-    </div>
-    <div id="reBadge"></div>
-    <div class="div"></div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:700;">📋 تفاصيل الاحتساب</div>
-    <div class="arow"><span class="albl">الراتب الشهري</span><span class="aval b" id="re_salary">—</span></div>
-    <div class="arow"><span class="albl" id="re_limitLabel">نسبة الاستقطاع الكلي</span><span class="aval b" id="re_limitPct">—</span></div>
-    <div class="arow"><span class="albl">سقف الاستقطاع الكلي</span><span class="aval b" id="re_cap">—</span></div>
-    <div class="arow"><span class="albl">استقطاع البطاقات</span><span class="aval r" id="re_cards">—</span></div>
-    <div class="arow"><span class="albl">التمويل الخارجي</span><span class="aval r" id="re_ext">—</span></div>
-    <div class="arow"><span class="albl" id="re_existLabel">قسط التمويل الشخصي القائم</span><span class="aval r" id="re_existInstall">—</span></div>
-    <div class="arow" style="border-top:2px solid var(--green);margin-top:2px;padding-top:10px;">
-      <span style="font-weight:800;color:var(--text)">القسط الأقصى المتاح (المرحلة الأولى)</span>
-      <span class="aval g" style="font-size:15px;" id="re_avail">—</span>
-    </div>
-    <div class="arow" id="re_phase2Row" style="display:none">
-      <span class="albl">القسط بعد انتهاء الشخصي (المرحلة الثانية)</span>
-      <span class="aval g" id="re_avail2">—</span>
-    </div>
-  </div>
-  <div id="reEmpty" style="font-size:13px;color:var(--muted);text-align:center;padding:22px 0;">
-    أدخل الراتب ونسبة الأرباح ومدة التمويل لعرض النتائج
-  </div>
 </div>
-```
 
-  </div>
-
-  <!-- ========== SETTLEMENT 20% TAB ========== -->
-
-  <div id="tab-settlement" class="tab-content">
-    <div class="card">
-      <div class="card-title">🧾 حاسبة سداد 20%</div>
-      <div class="g2">
-        <div class="field">
-          <label>مبلغ التمويل الأصلي (ريال)</label>
-          <input type="number" id="origLoan" placeholder="مثال: 200000" oninput="calcSettlement()">
-        </div>
-        <div class="field">
-          <label>المبلغ المتبقي من رأس المال (ريال)</label>
-          <input type="number" id="remainCapital" placeholder="مثال: 150000" oninput="calcSettlement()">
-        </div>
-      </div>
-
-```
-  <div id="settlResult" style="display:none">
-    <div class="result-main">
-      <div class="result-label">المبلغ المطلوب سداده</div>
-      <div class="result-big" id="settlAmount">—</div>
-      <div class="result-unit">ريال سعودي</div>
-      <div class="stat-row cols3" style="margin-top:8px;">
-        <div class="stat-box">
-          <div class="stat-val" id="settlThreshold">—</div>
-          <div class="stat-lbl">20.5% من الأصلي</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-val" id="settlDeducted">—</div>
-          <div class="stat-lbl">المدفوع من رأس المال</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-val" id="settlNet">—</div>
-          <div class="stat-lbl">المبلغ المطلوب سداده</div>
-        </div>
-      </div>
-    </div>
-    <div class="div"></div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:700;">📋 تفاصيل الاحتساب</div>
-    <div class="arow"><span class="albl">مبلغ التمويل الأصلي</span><span class="aval b" id="sd_orig">—</span></div>
-    <div class="arow"><span class="albl">20.5% من مبلغ التمويل الأصلي</span><span class="aval b" id="sd_pct">—</span></div>
-    <div class="arow"><span class="albl">المبلغ المدفوع من رأس المال (أصلي − متبقي)</span><span class="aval r" id="sd_remain">—</span></div>
-    <div class="arow" style="border-top:2px solid var(--green);margin-top:2px;padding-top:10px;">
-      <span style="font-weight:800;color:var(--text)">المبلغ المطلوب سداده</span>
-      <span class="aval g" style="font-size:15px;" id="sd_final">—</span>
-    </div>
-  </div>
-  <div id="settlEmpty" style="font-size:13px;color:var(--muted);text-align:center;padding:22px 0;">
-    أدخل مبلغ التمويل الأصلي والمبلغ المتبقي لعرض النتيجة
-  </div>
 </div>
-```
-
-  </div>
-
-<!-- SIDEBAR -->
-
-<div class="sidebar">
-  <div class="card">
-    <div class="card-title">📊 نسب الاستقطاع</div>
-
-```
-<div class="ratio-sec">
-  <div class="ratio-head"><span class="rlabel">① تمويل شخصي فقط</span><span class="rval" id="sb_pct1" style="color:var(--green-dark)">—</span></div>
-  <div class="bar-wrap"><div class="bar-fill" id="sb_bar1" style="width:0%"></div></div>
-  <div class="bar-limit" id="sb_lim1">الحد: —</div>
-  <div id="sb_st1"></div>
-</div>
-<div class="div"></div>
-<div class="ratio-sec">
-  <div class="ratio-head"><span class="rlabel">② شخصي + بطاقات</span><span class="rval" id="sb_pct2" style="color:var(--green-dark)">—</span></div>
-  <div class="bar-wrap"><div class="bar-fill" id="sb_bar2" style="width:0%"></div></div>
-  <div class="bar-limit">الحد: 45%</div>
-  <div id="sb_st2"></div>
-</div>
-<div class="div"></div>
-<div class="ratio-sec">
-  <div class="ratio-head"><span class="rlabel">③ شخصي + بطاقات + عقاري</span><span class="rval" id="sb_pct3" style="color:var(--green-dark)">—</span></div>
-  <div class="bar-wrap"><div class="bar-fill" id="sb_bar3" style="width:0%"></div></div>
-  <div class="bar-limit" id="sb_lim3">الحد: —</div>
-  <div id="sb_st3"></div>
-</div>
-<div class="div"></div>
-<div style="font-size:13px;font-weight:700;color:var(--green-dark);margin-bottom:10px;">💵 تحليل الراتب</div>
-<div class="arow"><span class="albl">الراتب الشهري</span><span class="aval b" id="sb_salary">—</span></div>
-<div class="arow"><span class="albl">استقطاع البطاقات</span><span class="aval r" id="sb_cards">—</span></div>
-<div class="arow"><span class="albl">التمويل الخارجي</span><span class="aval r" id="sb_ext">—</span></div>
-<div class="arow"><span class="albl">متاح للشخصي</span><span class="aval g" id="sb_avail1">—</span></div>
-<div class="arow"><span class="albl">متاح شخصي+بطاقات</span><span class="aval g" id="sb_avail2">—</span></div>
-<div class="arow"><span class="albl">متاح كلي + عقاري</span><span class="aval g" id="sb_avail3">—</span></div>
-```
-
-  </div>
-</div>
-</div><!-- end main -->
 
 <div class="footer">
-  <strong>by Osama Shaikh</strong> &nbsp;|&nbsp; ID Number: 210248
-  <br>جميع الحسابات استرشادية وفق سياسة الاستقطاع المعتمدة
+by Osama Shaikh 💚
 </div>
 
 <script>
+function calc(){
+let s=document.getElementById('salary').value;
+let r=document.getElementById('profitRate').value;
 
-  let clientType = 'employed';
-  let loanType   = 'new';
-
-  function setType(t, btn) {
-    clientType = t;
-    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    calc();
-  }
-
-  function setLoanType(t, btn) {
-    loanType = t;
-    document.querySelectorAll('.ltype-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('field-earlySettle').classList.toggle('show', t === 'supplementary');
-    document.getElementById('field-addInstall').classList.toggle('show',  t === 'additional');
-    document.getElementById('field-buyout').classList.toggle('show',      t === 'buyout');
-    calc();
-  }
-
-  function switchTab(t, btn) {
-    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('tab-' + t).classList.add('active');
-  }
-
-  function fmt(n) {
-    if (n === null || n === undefined || isNaN(n) || n < 0) return '—';
-    return Math.round(n).toLocaleString('en-US');
-  }
-
-  // Add-on (Flat) Rate:
-  // Principal = (Installment × months) / (1 + rate% × months/12)
-  function maxAmount(maxInstall, annualRate, months) {
-    if (maxInstall <= 0 || !months || months <= 0) return 0;
-    if (!annualRate || annualRate <= 0) return maxInstall * months;
-    return (maxInstall * months) / (1 + (annualRate / 100) * (months / 12));
-  }
-
-  function barColor(ratio) {
-    if (ratio <= 0.75) return '#00A36C';
-    if (ratio <= 1.00) return '#E65100';
-    return '#D32F2F';
-  }
-
-  function setBar(barId, pctId, statusId, limitId, usedPct, limitPct) {
-    const ratio = limitPct > 0 ? usedPct / limitPct : 0;
-    document.getElementById(barId).style.cssText = `width:${Math.min(ratio*100,100)}%;background:${barColor(ratio)}`;
-    if (pctId) document.getElementById(pctId).textContent = usedPct > 0 ? usedPct.toFixed(1)+'%' : '—';
-    if (limitId) document.getElementById(limitId).textContent = 'الحد: ' + limitPct + '%';
-    if (statusId) {
-      const s = document.getElementById(statusId);
-      if (usedPct <= 0) { s.innerHTML=''; return; }
-      s.innerHTML = usedPct <= limitPct
-        ? `<span class="badge ok">✓ ضمن الحد</span>`
-        : `<span class="badge over">✗ تجاوز بـ ${(usedPct-limitPct).toFixed(1)}%</span>`;
-    }
-  }
-
-  function calc() {
-    const salary          = parseFloat(document.getElementById('salary').value)           || 0;
-    const profitRate      = parseFloat(document.getElementById('profitRate').value)        || 0;
-    const creditLimit     = parseFloat(document.getElementById('creditLimit').value)       || 0;
-    const extPersonal     = parseFloat(document.getElementById('extPersonal').value)       || 0;
-    const pTenure         = parseFloat(document.getElementById('pTenure').value)           || 0;
-    const reTenure        = parseFloat(document.getElementById('reTenure').value)          || 0;
-    const existInstall    = parseFloat(document.getElementById('existInstall').value)      || 0;
-    const existRemain     = parseFloat(document.getElementById('existRemain').value)       || 0;
-    const earlySettle     = parseFloat(document.getElementById('earlySettle').value)       || 0;
-    const addExistInstall = parseFloat(document.getElementById('addExistInstall').value)   || 0;
-    const otherBankDebt   = parseFloat(document.getElementById('otherBankDebt').value)    || 0;
-
-    const cardDeduct = creditLimit * 0.05;
-
-    // Card note
-    document.getElementById('cardNote').style.display = creditLimit > 0 ? 'block' : 'none';
-    if (creditLimit > 0) document.getElementById('cardNoteVal').textContent = fmt(cardDeduct);
-
-    // External deduction rule: affects 33.33% only if > 12% of salary
-    const extPct       = salary > 0 ? (extPersonal / salary * 100) : 0;
-    const extAffects33 = extPct > 12;
-    const extNote = document.getElementById('extRuleNote');
-    if (salary > 0 && extPersonal > 0) {
-      extNote.style.display = 'block';
-      extNote.style.background = extAffects33 ? '#FFF8E1' : '#E8F5F0';
-      extNote.style.borderColor = extAffects33 ? '#FFD54F' : '#A5D6A7';
-      document.getElementById('extRuleVal').textContent = extPct.toFixed(1);
-      document.getElementById('extRuleMsg').textContent = extAffects33
-        ? 'يتجاوز 12% → يؤثر على نسبة 33.33% و 45%'
-        : 'أقل من 12% → يؤثر على 45% فقط، لا يخصم من 33.33%';
-    } else {
-      extNote.style.display = 'none';
-    }
-
-    // ─── LIMITS ────────────────────────────────────────────────────────────────
-    const pLimitPct   = clientType === 'employed' ? 33.33 : 25;
-    const pcLimitPct  = 45;
-    const allLimitPct = clientType === 'retired' ? 55 : (salary >= 15000 ? 65 : 55);
-    document.getElementById('addLimitLabel').textContent = pLimitPct + '%';
-
-    const capPersonal      = salary * pLimitPct  / 100;
-    const capPersonalCards = salary * pcLimitPct / 100;
-    const capAll           = salary * allLimitPct / 100;
-
-    // ─── MAX PERSONAL INSTALLMENT ─────────────────────────────────────────────
-    // Rule 1 (33.33%): ext only if >12%
-    const extDeductFrom33 = extAffects33 ? extPersonal : 0;
-    let avail1 = Math.max(0, capPersonal - extDeductFrom33);
-    if (loanType === 'additional') avail1 = Math.max(0, avail1 - addExistInstall);
-
-    // Rule 2 (45%): cards + ext always
-    let avail2 = Math.max(0, capPersonalCards - cardDeduct - extPersonal);
-    if (loanType === 'additional') avail2 = Math.max(0, avail2 - addExistInstall);
-
-    const maxPInstall = Math.min(avail1, avail2);
-
-    // ─── RE AVAILABLE ───────────────────────────────────────────────────────────
-    const availRE_phase1 = Math.max(0, capAll - cardDeduct - extPersonal - existInstall);
-    const availRE_phase2 = Math.max(0, capAll - cardDeduct - extPersonal);
-
-    // ─── SIDEBAR ────────────────────────────────────────────────────────────────
-    document.getElementById('sb_salary').textContent = salary ? fmt(salary)+' ﷼' : '—';
-    document.getElementById('sb_cards').textContent  = cardDeduct ? fmt(cardDeduct)+' ﷼' : '—';
-    document.getElementById('sb_ext').textContent    = extPersonal ? fmt(extPersonal)+' ﷼' : '—';
-    document.getElementById('sb_avail1').textContent = salary ? fmt(maxPInstall)+' ﷼' : '—';
-    document.getElementById('sb_avail2').textContent = salary ? fmt(avail2)+' ﷼' : '—';
-    document.getElementById('sb_avail3').textContent = salary ? fmt(availRE_phase1)+' ﷼' : '—';
-
-    // ─── PERSONAL ───────────────────────────────────────────────────────────────
-    const pReady = salary > 0 && profitRate > 0 && pTenure > 0;
-    document.getElementById('pResult').style.display = pReady ? 'block' : 'none';
-    document.getElementById('pEmpty').style.display  = pReady ? 'none' : 'block';
-
-    document.getElementById('bd_addRow').style.display     = loanType === 'additional' ? 'flex' : 'none';
-    document.getElementById('bd_buyoutRow').style.display  = loanType === 'buyout' ? 'flex' : 'none';
-    document.getElementById('bd_otherDebtRow').style.display = loanType === 'buyout' ? 'flex' : 'none';
-
-    let pInstallUsed = 0;
-    if (pReady) {
-      pInstallUsed = maxPInstall;
-
-      // Buyout: effective months = tenure - 2
-      let effectiveMonths = pTenure;
-      let buyoutNote = '';
-      if (loanType === 'buyout') {
-        effectiveMonths = Math.max(1, pTenure - 2);
-        buyoutNote = ' (أقساط فعلية: ' + effectiveMonths + ')';
-      }
-
-      let pMaxAmtVal = maxAmount(pInstallUsed, profitRate, effectiveMonths);
-      const totalP = pInstallUsed * effectiveMonths;
-
-      // For buyout: deduct other bank debt from the gross amount
-      let netAfterBuyout = pMaxAmtVal;
-      if (loanType === 'buyout' && otherBankDebt > 0) {
-        netAfterBuyout = Math.max(0, pMaxAmtVal - otherBankDebt);
-      }
-
-      // ─── FEES ─────────────────────────────────────────────────────────────────
-      // Fees are based on gross financed amount
-      const feeAdmin = pMaxAmtVal * 0.005;          // 0.5%
-      const feeVat   = feeAdmin * 0.15;              // 15% of admin fee
-      const feeTotal = feeAdmin + feeVat;
-      // Net to client = gross - fees - (other bank debt if buyout)
-      let netToClient;
-      if (loanType === 'buyout') {
-        netToClient = Math.max(0, pMaxAmtVal - otherBankDebt - feeTotal);
-      } else if (loanType === 'supplementary') {
-        netToClient = Math.max(0, pMaxAmtVal - earlySettle - feeTotal);
-      } else {
-        netToClient = Math.max(0, pMaxAmtVal - feeTotal);
-      }
-
-      // Result labels
-      const labels = { new:'أقصى مبلغ تمويل شخصي ممكن', supplementary:'إجمالي مبلغ التمويل التكميلي', additional:'أقصى مبلغ التمويل الإضافي الجديد', buyout:'إجمالي مبلغ شراء المديونية' };
-      document.getElementById('pResultLabel').textContent = labels[loanType];
-      document.getElementById('pMaxAmt').textContent  = fmt(pMaxAmtVal) + ' ﷼';
-      document.getElementById('pInstall').textContent = fmt(pInstallUsed) + ' ﷼';
-      document.getElementById('pTotal').textContent   = fmt(totalP) + ' ﷼';
-      document.getElementById('pProfit').textContent  = fmt(Math.max(0, totalP - pMaxAmtVal)) + ' ﷼';
-      document.getElementById('pNet').textContent     = fmt(netToClient) + ' ﷼';
-
-      // Fees box
-      document.getElementById('fee_principal').textContent = fmt(pMaxAmtVal) + ' ﷼';
-      document.getElementById('fee_admin').textContent     = fmt(feeAdmin) + ' ﷼';
-      document.getElementById('fee_vat').textContent       = fmt(feeVat) + ' ﷼';
-      document.getElementById('fee_total').textContent     = fmt(feeTotal) + ' ﷼';
-      document.getElementById('fee_net').textContent       = fmt(netToClient) + ' ﷼';
-
-      // Buyout / supplementary split
-      const showSplit = (loanType === 'buyout' && otherBankDebt > 0) || (loanType === 'supplementary' && earlySettle > 0);
-      document.getElementById('buyoutSplit').style.display = showSplit ? 'block' : 'none';
-      if (showSplit) {
-        const settlementAmt = loanType === 'buyout' ? otherBankDebt : earlySettle;
-        const depositAmt = Math.max(0, pMaxAmtVal - settlementAmt - feeTotal);
-        document.getElementById('buyoutSettle').textContent  = fmt(settlementAmt) + ' ﷼';
-        document.getElementById('buyoutDeposit').textContent = fmt(depositAmt) + ' ﷼';
-      }
-
-      // Breakdown
-      document.getElementById('bd_salary').textContent     = fmt(salary) + ' ﷼';
-      document.getElementById('bd_limitLabel').textContent = `نسبة الاستقطاع الشخصي (${pLimitPct}%)`;
-      document.getElementById('bd_limitPct').textContent   = pLimitPct + '%';
-      document.getElementById('bd_cap1').textContent       = fmt(capPersonal) + ' ﷼  ←  متاح: ' + fmt(avail1) + ' ﷼';
-      document.getElementById('bd_cap2').textContent       = fmt(capPersonalCards) + ' ﷼  ←  متاح: ' + fmt(avail2) + ' ﷼';
-      document.getElementById('bd_ext').textContent        = extPersonal ? fmt(extPersonal)+' ﷼'+(extAffects33?' (يؤثر على 33.33%)':' (45% فقط)') : '—';
-      document.getElementById('bd_cards').textContent      = cardDeduct ? fmt(cardDeduct)+' ﷼' : '—';
-      document.getElementById('bd_addInstall').textContent = addExistInstall ? fmt(addExistInstall)+' ﷼' : '—';
-      document.getElementById('bd_avail').textContent      = fmt(pInstallUsed) + ' ﷼';
-      if (loanType === 'buyout') {
-        document.getElementById('bd_buyoutMonths').textContent = effectiveMonths + ' شهر (من أصل ' + pTenure + ')';
-        document.getElementById('bd_otherDebt').textContent    = otherBankDebt ? fmt(otherBankDebt)+' ﷼' : '—';
-      }
-
-      document.getElementById('pBadge').innerHTML = pInstallUsed <= 0
-        ? `<span class="badge over">✗ لا يوجد متاح للتمويل بعد الاستقطاعات الحالية</span>`
-        : `<span class="badge ok">✓ يمكن الحصول على التمويل${buyoutNote}</span>`;
-    }
-
-    // ─── REAL ESTATE ────────────────────────────────────────────────────────────
-    const reReady = salary > 0 && profitRate > 0 && reTenure > 0;
-    document.getElementById('reResult').style.display = reReady ? 'block' : 'none';
-    document.getElementById('reEmpty').style.display  = reReady ? 'none' : 'block';
-
-    let reInstallUsed = 0;
-    if (reReady) {
-      reInstallUsed = availRE_phase1;
-      const hasExisting = existInstall > 0 && existRemain > 0 && existRemain < reTenure;
-      let reMaxAmtVal, totalRE;
-      if (hasExisting) {
-        const p1 = Math.min(existRemain, reTenure);
-        const p2 = reTenure - p1;
-        const totalRepayment = (p1 * availRE_phase1) + (p2 * availRE_phase2);
-        reMaxAmtVal = profitRate > 0 ? totalRepayment / (1 + (profitRate/100) * (reTenure/12)) : totalRepayment;
-        totalRE = totalRepayment;
-      } else {
-        reMaxAmtVal = maxAmount(reInstallUsed, profitRate, reTenure);
-        totalRE = reInstallUsed * reTenure;
-      }
-
-      document.getElementById('reMaxAmt').textContent  = fmt(reMaxAmtVal) + ' ﷼';
-      document.getElementById('reInstall').textContent = fmt(reInstallUsed) + ' ﷼';
-      document.getElementById('reTotal').textContent   = fmt(totalRE) + ' ﷼';
-      document.getElementById('reProfit').textContent  = fmt(Math.max(0, totalRE - reMaxAmtVal)) + ' ﷼';
-      document.getElementById('re_salary').textContent     = fmt(salary) + ' ﷼';
-      document.getElementById('re_limitLabel').textContent = `نسبة الاستقطاع الكلي (${allLimitPct}%)`;
-      document.getElementById('re_limitPct').textContent   = allLimitPct + '%';
-      document.getElementById('re_cap').textContent        = fmt(capAll) + ' ﷼';
-      document.getElementById('re_cards').textContent      = cardDeduct ? fmt(cardDeduct)+' ﷼' : '—';
-      document.getElementById('re_ext').textContent        = extPersonal ? fmt(extPersonal)+' ﷼' : '—';
-
-      const phase2Row = document.getElementById('re_phase2Row');
-      if (hasExisting) {
-        const p1 = Math.min(existRemain, reTenure);
-        document.getElementById('re_existLabel').textContent   = `قسط الشخصي القائم (${p1} شهر)`;
-        document.getElementById('re_existInstall').textContent = fmt(existInstall) + ' ﷼';
-        document.getElementById('re_avail').textContent        = fmt(availRE_phase1) + ' ﷼';
-        document.getElementById('re_avail2').textContent       = fmt(availRE_phase2) + ' ﷼  (بعد ' + p1 + ' شهر)';
-        phase2Row.style.display = 'flex';
-      } else {
-        document.getElementById('re_existLabel').textContent   = 'قسط التمويل الشخصي القائم';
-        document.getElementById('re_existInstall').textContent = existInstall ? fmt(existInstall)+' ﷼' : '—';
-        document.getElementById('re_avail').textContent        = fmt(reInstallUsed) + ' ﷼';
-        phase2Row.style.display = 'none';
-      }
-
-      document.getElementById('reBadge').innerHTML = reInstallUsed <= 0
-        ? `<span class="badge over">✗ لا يوجد متاح للتمويل العقاري</span>`
-        : `<span class="badge ok">✓ يمكن الحصول على تمويل عقاري${hasExisting ? ' (محتسب على مرحلتين)' : ''}</span>`;
-    }
-
-    // ─── SIDEBAR BARS ───────────────────────────────────────────────────────────
-    const usedPI = pReady ? pInstallUsed : 0;
-    const usedRI = reReady ? reInstallUsed : 0;
-    const used1 = salary > 0 ? ((usedPI + extDeductFrom33) / salary * 100) : 0;
-    setBar('sb_bar1','sb_pct1','sb_st1','sb_lim1', used1, pLimitPct);
-    const used2 = salary > 0 ? ((usedPI + cardDeduct + extPersonal) / salary * 100) : 0;
-    setBar('sb_bar2','sb_pct2','sb_st2', null, used2, pcLimitPct);
-    const used3 = salary > 0 ? ((usedPI + cardDeduct + extPersonal + usedRI + existInstall) / salary * 100) : 0;
-    setBar('sb_bar3','sb_pct3','sb_st3','sb_lim3', used3, allLimitPct);
-  }
-  function calcSettlement() {
-    const origLoan      = parseFloat(document.getElementById('origLoan').value)      || 0;
-    const remainCapital = parseFloat(document.getElementById('remainCapital').value) || 0;
-
-    const ready = origLoan > 0 && remainCapital > 0;
-    document.getElementById('settlResult').style.display = ready ? 'block' : 'none';
-    document.getElementById('settlEmpty').style.display  = ready ? 'none'  : 'block';
-
-    if (ready) {
-      // 20.5% of original loan
-      const threshold = origLoan * 0.205;
-      // Amount already paid from principal = original - remaining
-      const alreadyPaid = origLoan - remainCapital;
-      // Amount still due = threshold - already paid
-      const amountDue = Math.max(0, threshold - alreadyPaid);
-
-      document.getElementById('settlAmount').textContent    = fmt(amountDue) + ' ﷼';
-      document.getElementById('settlThreshold').textContent = fmt(threshold) + ' ﷼';
-      document.getElementById('settlDeducted').textContent  = fmt(alreadyPaid) + ' ﷼';
-      document.getElementById('settlNet').textContent       = fmt(amountDue) + ' ﷼';
-
-      document.getElementById('sd_orig').textContent    = fmt(origLoan) + ' ﷼';
-      document.getElementById('sd_pct').textContent     = fmt(threshold) + ' ﷼';
-      document.getElementById('sd_remain').textContent  = fmt(alreadyPaid) + ' ﷼';
-      document.getElementById('sd_final').textContent   = fmt(amountDue) + ' ﷼';
-    }
-  }
-
+if(s && r){
+let result=s * r;
+document.getElementById('output').innerText=result;
+document.getElementById('result').style.display='block';
+}
+}
 </script>
 
 </body>
